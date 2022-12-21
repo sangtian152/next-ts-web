@@ -1,8 +1,9 @@
-import type { GetServerSideProps } from 'next'
-import { Button, Empty } from 'antd';
+import type { GetServerSideProps, NextPage } from 'next'
 import React from 'react'
-import { getNoticeList } from '@/api/notice';
+import Link from 'next/link'
 import cx from 'classnames'
+import { Button, Empty } from 'antd';
+import { getNoticeList } from '@/api/notice';
 import styles from "@/styles/notice.module.scss";
 interface Props {
   noticeList: Array<Record<string, any>>
@@ -20,8 +21,9 @@ const Notice = (props:Props) => {
               <div className={styles.notice_footer}>
                 <span className={styles.notice_date}>{item.publishDate}</span>
                 <div>
-                  <Button className="user-button orange" size={"small"} ghost>查看详情</Button>
-                  {item.canApply ? <Button className={cx(['user-button', 'orange', styles.apply_btn])} size={"small"} ghost>我要申请</Button> : null}
+                  <Link href={'/demo/' + item.id}>
+                    <Button className="user-button orange" size={"small"} ghost>查看详情</Button>
+                  </Link>
                 </div>
               </div>
             </li>)

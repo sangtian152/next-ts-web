@@ -1,16 +1,22 @@
 import type { NextPage } from 'next'
 import {wrapper} from '@/store'
-import { login } from '@/store/slices/auth'
-const Demo:NextPage = () => {
+
+interface Props {
+  id: string
+}
+
+const Demo:NextPage = (props) => {
+  const _props = props as Props
   return (
-    <div>Demo</div>
+    <div>公告id:{_props.id}</div>
   )
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
-  console.log(store.getState().auth.token, 11)
   return {
-    props: {}
+    props: {
+      id: ctx.params?.id
+    }
   }
 });
 
