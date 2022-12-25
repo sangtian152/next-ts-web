@@ -1,6 +1,6 @@
 import request from "@/utils/request";
 
-export const fetchAppInfo = async (data:Record<string, string>, callback: (arg0: Record<string, string>) => any) => {
+export const fetchAppInfo = async (data:Record<string, string>, callback: (arg0: Record<string, string|number>) => any) => {
   const res = await request({
     url: "/front/partner/findByDomain.zm",
     method: "post",
