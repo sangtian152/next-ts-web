@@ -3,16 +3,18 @@ import React from 'react'
 import Link from 'next/link'
 import cx from 'classnames'
 import { Button, Empty } from 'antd';
+import { fetchAppInfo } from '@/api/common'
 import { getNoticeList } from '@/api/notice';
 import styles from "@/styles/notice.module.scss";
 interface Props {
   noticeList: Array<Record<string, any>>
 }
-const Notice = (props:Props) => {
+const Notice:NextPage = (props) => {
+  const { noticeList } = (props as Props)
   return (
     <div className="page-container">
-        {props.noticeList.length ? (<ul className={styles.notice_list}>
-          {props.noticeList.map(item => {
+        {noticeList.length ? (<ul className={styles.notice_list}>
+          {noticeList.map(item => {
             return (<li key={item.id} className={styles.notice_item}>
               <h4 className={styles.notice_title}>{item.title}</h4>
               <div className={styles.notice_content} dangerouslySetInnerHTML={{
@@ -37,6 +39,9 @@ const Notice = (props:Props) => {
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
   console.log('context.req.headers.host ===>' + context.req.headers.cookie)
+  fetchAppInfo({domain: 'testyzsdata.jzhangfang.com'}, (arg) => {
+    console.log(arg.id)
+  })
   const res = await getNoticeList({
     type: '1',
     keyword: '',

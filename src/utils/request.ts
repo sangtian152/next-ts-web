@@ -6,17 +6,6 @@ import { reduxStore } from '@/store'
 const getBaseUrl = () => {
   let baseURL = 'https://ygj.jzhangfang.com/' // 测试环境
   let partnerId = 'wx8138818152795a71'
-  // 获取某个state的值，由于使用了subscribe，当数据更改时会重新获取
-  /* reduxStore.subscribe(() => {
-    let appStore = reduxStore.getState().app;
-    partnerId = appStore.partnerId
-    const testDomain = ['localhost', 'testyzsdata.jzhangfang.com']
-    if (!testDomain.includes(appStore.domain)) {
-      baseURL = 'https://xcx.youzics.com/'
-    } else {
-      baseURL = 'https://ygj.jzhangfang.com/'
-    }
-  }) */
   return {
     baseURL,
     partnerId
