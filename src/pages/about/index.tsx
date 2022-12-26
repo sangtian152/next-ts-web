@@ -1,23 +1,29 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
+import axios from 'axios'
 
 interface Props {
-  title: string
+  name: string
 }
 
 const About:NextPage = (props) => {
   const _props = props as Props
   return (
-    <div>{_props.title}</div>
+    <h2>hello {_props.name}</h2>
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const res = await axios.get('http://localhost:3000/api/hello');
   return {
     props: {
-      title: 'about us',
+      name: res.data.name,
     },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 1800 seconds
     revalidate: 1800,
   };
 }
+
 
 export default About
