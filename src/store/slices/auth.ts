@@ -28,11 +28,11 @@ export const login = createAsyncThunk(
 );
 
 export interface authState {
-  count: number,
-  token: string|null,
-  userName: string,
-  errorMsg: string|null,
-  isLogin: boolean,
+  count: number;
+  token: string|null;
+  userName: string;
+  errorMsg: string|null;
+  isLogin: boolean;
 }
 
 // 初始化数据

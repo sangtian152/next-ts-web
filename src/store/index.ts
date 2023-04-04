@@ -2,11 +2,13 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import {createWrapper} from 'next-redux-wrapper';
 import {nextReduxCookieMiddleware, wrapMakeStore} from "next-redux-cookie-wrapper";
 import {appSlice} from './slices/app';
+import {menuSlice} from './slices/menu';
 import {authSlice} from './slices/auth';
 // import logger from "redux-logger";
  
 const combinedReducers = combineReducers({
   [appSlice.name]: appSlice.reducer,
+  [menuSlice.name]: menuSlice.reducer,
   [authSlice.name]: authSlice.reducer,
 });
 export const reduxStore = configureStore({
@@ -14,8 +16,8 @@ export const reduxStore = configureStore({
   middleware: (getDefaultMiddleware) => {
     const middlewares = getDefaultMiddleware().prepend(
       nextReduxCookieMiddleware({
-        // 在这里设置在客户端和服务器端共享的cookie数据
-        subtrees: ["auth.token", "auth.isLogin"], 
+          // 在这里设置在客户端和服务器端共享的cookie数据
+          subtrees: ["auth.token", "auth.isLogin", "app.partnerId"], 
         }) 
     )
     if (process.env.NODE_ENV === `development`) {

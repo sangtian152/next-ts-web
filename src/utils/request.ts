@@ -1,17 +1,8 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
 import qs from 'qs'
 import { message } from 'antd';
-import { reduxStore } from '@/store'
+import { baseURL } from '@/config'
 
-const getBaseUrl = () => {
-  let baseURL = 'https://ygj.jzhangfang.com/' // 测试环境
-  let partnerId = 'wx8138818152795a71'
-  return {
-    baseURL,
-    partnerId
-  }
-}
-// const baseURL = 'https://xcx.youzics.com/' //正式环境
 // 创建axios实例
 const service = axios.create({
     // baseURL,
@@ -39,14 +30,15 @@ const service = axios.create({
 // 拦截器
 service.interceptors.response.use((response) => {
     if (response.data.Status!==1) {
-      message.error(response.data.Msg);
+      if (!response.config.data.includes('isServer=1')) {
+        message.error(response.data.Msg);
+      }
     }
     return response
 }, (error) => {
     return Promise.reject(error)
 })
 service.interceptors.request.use((config) => {
-    const {baseURL, partnerId} = getBaseUrl()
     // 防止多次请求接口，把前一次请求取消
     let curl = config.url
     cancelPending(config);
@@ -59,8 +51,6 @@ service.interceptors.request.use((config) => {
     config.url = baseURL + curl
     if (!config.isUpload) {
       const payload = {
-        // partnerId: localStorage.getItem('app_partnerId') || undefined,
-        partnerId,
         ...config.data,
       }
       config.data = qs.stringify(payload)

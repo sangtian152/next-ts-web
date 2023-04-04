@@ -1,0 +1,66 @@
+.page {
+  padding: 60px 0;
+  .header {
+    padding-bottom: 20px;
+  }
+  .main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 48px;
+  }
+  .mine_info {
+    flex: 1;
+    margin-right: 200px;
+  }
+  .mine_title {
+    height: 27px;
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-color;
+    line-height: 27px;
+    margin-bottom: 12px;
+  }
+  .mine_desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: $gray-text-color;
+    line-height: 24px;
+    margin-bottom: 35px;
+  }
+  .mine_ul {
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-color;
+    line-height: 38px;
+  }
+  .mine_code {
+    display: flex;
+    margin-top: 30px;
+    .code {
+      text-align: center;
+      background: #fff;
+      border-radius: 2px;
+      border: 1px solid #E7ECF6;
+      padding: 10px 10px 0;
+      & + .code {
+        margin-left: 20px;
+      }
+    }
+    p {
+      font-size: 13px;
+      font-weight: 400;
+      color: $text-color;
+      line-height: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  .page {
+    .form {
+      margin-top: 20px;
+    }
+  }
+}

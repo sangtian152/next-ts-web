@@ -3,7 +3,7 @@ const next = require('next')
 const { parse } = require('url')
 const createProxyMiddleware = require('http-proxy-middleware').createProxyMiddleware ;
  
-const baseUrl='https://ygj.jzhangfang.com/'
+const baseUrl='http://localhost:3000/'
  
 const devProxy = {
     '/api': {
@@ -15,7 +15,7 @@ const devProxy = {
     }
 }
  
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = parseInt(process.env.PORT, 10) || 3001
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({
     dev

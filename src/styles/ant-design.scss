@@ -1,0 +1,85 @@
+// 重写ant-design样式
+.ant-layout.app-container {
+  // header
+  .ant-layout-header {
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0px 2px 8px 0px rgba(25,74,208,0.1);
+  }
+  // footer
+  .ant-layout-footer {
+    color: #fff;
+    background-color: #111;
+    padding: 0;
+    a {
+      color: #fff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// 导航组件
+.ant-menu.nav {
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-color;
+  border: none!important;
+  &.ant-menu-horizontal {
+    .ant-menu-submenu,
+    .ant-menu-item {
+      padding-inline: 32px;
+    }
+  }
+  & > .ant-menu-submenu-open::after,
+  & > .ant-menu-submenu::after,
+  & > .ant-menu-item::after {
+    display: none!important;
+  }
+}
+.ant-menu-submenu-popup {
+  font-weight: 600;
+}
+// 面包屑
+.ant-breadcrumb.breadcrumb {
+  line-height: inherit;
+  .ant-breadcrumb-link {
+    height: auto;
+    &:hover {
+      background: none;
+    }
+  }
+}
+// 卡片组件
+.ant-card.horizontal {
+  display: flex;
+  .ant-card-cover {
+    cursor: pointer;
+    img {
+      border-radius: 0;
+    }
+  }
+  .ant-card-body {
+    flex: 1;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ant-card-meta {
+    flex: 1;
+    cursor: pointer;
+  }
+}
+// 1px dashed #000
+// 时间线样式
+.ant-timeline.dashed {
+  .ant-timeline-item-tail {
+    border-left: 1px dashed #333;
+  }
+  .ant-timeline-item-head {
+    font-size: 28px;
+    background: $body-color;
+  }
+}
